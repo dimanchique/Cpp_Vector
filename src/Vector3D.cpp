@@ -102,6 +102,19 @@ Vector3D Vector3D::GetCrossProduct(const Vector3D &right) const {
             X * right.Y - Y * right.X};
 }
 
+float Vector3D::GetTripleProduct(const Vector3D &middle, const Vector3D &right) const {
+    return GetDotProduct(GetCrossProduct(middle, right));
+}
+
+float Vector3D::GetAngleRelativeToVector(const Vector3D &right) const {
+    const auto dot = GetDotProduct(right);
+    return std::acos(dot / (GetMagnitude() * right.GetMagnitude()));
+}
+
+float Vector3D::GetDistanceToVector(const Vector3D &right) const {
+    return (*this-right).GetMagnitude();
+}
+
 float Vector3D::GetDotProduct(const Vector3D &left, const Vector3D &right) {
     return left.GetDotProduct(right);
 }
@@ -110,13 +123,16 @@ Vector3D Vector3D::GetCrossProduct(const Vector3D &left, const Vector3D &right) 
     return left.GetCrossProduct(right);
 }
 
-float Vector3D::GetAngleRelativeToVector(const Vector3D &right) const {
-    const auto dot = GetDotProduct(right);
-    return std::acos(dot / (GetMagnitude() * right.GetMagnitude()));
+float Vector3D::GetTripleProduct(const Vector3D &left, const Vector3D &middle, const Vector3D &right) {
+    return left.GetTripleProduct(middle, right);
 }
 
 float Vector3D::GetAngleBetweenVectors(const Vector3D &left, const Vector3D &right) {
     return left.GetAngleRelativeToVector(right);
+}
+
+float Vector3D::GetDistanceBetweenVectors(const Vector3D &left, const Vector3D &right) {
+    return left.GetDistanceToVector(right);
 }
 
 Vector3D Vector3D::GetRandomRotatedVector() {

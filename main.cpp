@@ -1,11 +1,10 @@
+#include "Vector2D.h"
 #include "Vector3D.h"
 
 int main() {
-    for(int i = 0; i < 100; i++)
-    {
-        auto vec = Vector3D::GetRandomRotatedVector();
-        const auto m = vec.GetMagnitude();
-        printf("Generated vector (%.4f; %.4f; %.4f) with magnitude %.4f\n", vec.X, vec.Y, vec.Z, m);
-    }
+    const auto vec1 = Vector3D(3,-2,5);
+    const auto vec2 = Vector3D(1,-1, 3);
+    const auto vec3 = Vector3D(-2,2, 1);
+    printf("Triple product: %.4f\n", Vector3D::GetTripleProduct(vec1, vec2, vec3));
     return 0;
 }

@@ -5,16 +5,11 @@
 #define RadToDeg(x) (x) * 57.295779513f;
 #define DegToRad(x) (x) * 0.01745329252f;
 
-class Vector2D{
-public:
+struct Vector2D{
     float X, Y;
 
     Vector2D() : X(0), Y(0) {};
     Vector2D(float X, float Y) : X(X), Y(Y) {};
-    explicit Vector2D(float Degrees) : X(1), Y(0) {
-        Rotate(Degrees);
-        Normalize();
-    }
 
     Vector2D operator+(const Vector2D &right) const;
     Vector2D operator-(const Vector2D &right) const;
@@ -34,10 +29,13 @@ public:
     [[nodiscard]] bool IsUnitVector() const;
     [[nodiscard]] float GetDotProduct(const Vector2D &right) const;
     [[nodiscard]] float GetAngleRelativeToVector(const Vector2D &right) const;
+    [[nodiscard]] float GetDistanceToVector(const Vector2D &right) const;
 
     static float GetDotProduct(const Vector2D &left, const Vector2D &right);
     static float GetAngleBetweenVectors(const Vector2D &left, const Vector2D &right);
+    static float GetDistanceBetweenVectors(const Vector2D &left, const Vector2D &right);
     static Vector2D GetRandomRotatedVector();
-    static Vector2D GetXVector() { return {1, 0}; }
-    static Vector2D GetYVector() { return {0, 1}; }
+
+    static Vector2D XVector() { return {1, 0}; }
+    static Vector2D YVector() { return {0, 1}; }
 };

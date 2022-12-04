@@ -66,7 +66,7 @@ void Vector2D::Rotate(float Degrees) {
 }
 
 float Vector2D::GetRotation() const {
-    return GetAngleBetweenVectors(*this, GetXVector());
+    return GetAngleBetweenVectors(*this, XVector());
 }
 
 void Vector2D::Normalize() {
@@ -110,12 +110,20 @@ float Vector2D::GetAngleRelativeToVector(const Vector2D &right) const {
     return std::acos(dot/(GetMagnitude() * right.GetMagnitude()));
 }
 
+float Vector2D::GetDistanceToVector(const Vector2D &right) const {
+    return (*this-right).GetMagnitude();
+}
+
 float Vector2D::GetDotProduct(const Vector2D &left, const Vector2D &right) {
     return left.GetDotProduct(right);
 }
 
 float Vector2D::GetAngleBetweenVectors(const Vector2D &left, const Vector2D &right) {
     return left.GetAngleRelativeToVector(right);
+}
+
+float Vector2D::GetDistanceBetweenVectors(const Vector2D &left, const Vector2D &right) {
+    return left.GetDistanceToVector(right);
 }
 
 Vector2D Vector2D::GetRandomRotatedVector() {

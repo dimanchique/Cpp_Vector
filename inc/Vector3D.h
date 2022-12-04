@@ -5,8 +5,7 @@
 #define RadToDeg(x) (x) * 57.295779513f;
 #define DegToRad(x) (x) * 0.01745329252f;
 
-class Vector3D{
-public:
+struct Vector3D{
     float X, Y, Z;
 
     Vector3D() : X(0), Y(0), Z(0) {};
@@ -28,14 +27,18 @@ public:
     [[nodiscard]] bool IsUnitVector() const;
     [[nodiscard]] float GetDotProduct(const Vector3D &right) const;
     [[nodiscard]] Vector3D GetCrossProduct(const Vector3D &right) const;
+    [[nodiscard]] float GetTripleProduct(const Vector3D &middle, const Vector3D &right) const;
     [[nodiscard]] float GetAngleRelativeToVector(const Vector3D &right) const;
+    [[nodiscard]] float GetDistanceToVector(const Vector3D &right) const;
 
     static float GetDotProduct(const Vector3D &left, const Vector3D &right);
     static Vector3D GetCrossProduct(const Vector3D &left, const Vector3D &right);
+    static float GetTripleProduct(const Vector3D &left, const Vector3D &middle, const Vector3D &right);
     static float GetAngleBetweenVectors(const Vector3D &left, const Vector3D &right);
+    static float GetDistanceBetweenVectors(const Vector3D &left, const Vector3D &right);
     static Vector3D GetRandomRotatedVector();
 
-    static Vector3D GetXVector() { return {1, 0, 0}; }
-    static Vector3D GetYVector() { return {0, 1, 0}; }
-    static Vector3D GetZVector() { return {0, 0, 1}; }
+    static Vector3D XVector() { return {1, 0, 0}; }
+    static Vector3D YVector() { return {0, 1, 0}; }
+    static Vector3D ZVector() { return {0, 0, 1}; }
 };
