@@ -16,11 +16,13 @@ struct Vector2D{
     Vector2D &operator+=(const Vector2D &right);
     Vector2D &operator-=(const Vector2D &right);
     bool operator==(const Vector2D &right) const;
+    bool operator!=(const Vector2D &right) const;
     Vector2D operator*(float Value) const;
     Vector2D operator/(float Value) const;
     Vector2D &operator*=(float Value);
     Vector2D &operator/=(float Value);
 
+    [[nodiscard]] Vector2D GetNormalVector() const;
     void Rotate(float Degrees);
     [[nodiscard]] float GetRotation() const;
     void Normalize();
@@ -31,6 +33,7 @@ struct Vector2D{
     [[nodiscard]] float GetAngleRelativeToVector(const Vector2D &right) const;
     [[nodiscard]] float GetDistanceToVector(const Vector2D &right) const;
 
+    static Vector2D GetNormalVector(const Vector2D &vec);
     static float GetDotProduct(const Vector2D &left, const Vector2D &right);
     static float GetAngleBetweenVectors(const Vector2D &left, const Vector2D &right);
     static float GetDistanceBetweenVectors(const Vector2D &left, const Vector2D &right);

@@ -28,6 +28,10 @@ bool Vector2D::operator==(const Vector2D &right) const{
     return (X == right.X && Y == right.Y);
 }
 
+bool Vector2D::operator!=(const Vector2D &right) const {
+    return !(this->operator==(right));
+}
+
 Vector2D Vector2D::operator*(const float Value) const {
     Vector2D temp(*this);
     temp *= Value;
@@ -54,6 +58,10 @@ Vector2D &Vector2D::operator/=(float Value) {
     X /= Value;
     Y /= Value;
     return *this;
+}
+
+Vector2D Vector2D::GetNormalVector() const {
+    return {-Y, X};
 }
 
 void Vector2D::Rotate(float Degrees) {
@@ -112,6 +120,10 @@ float Vector2D::GetAngleRelativeToVector(const Vector2D &right) const {
 
 float Vector2D::GetDistanceToVector(const Vector2D &right) const {
     return (*this-right).GetMagnitude();
+}
+
+Vector2D Vector2D::GetNormalVector(const Vector2D &vec) {
+    return vec.GetNormalVector();
 }
 
 float Vector2D::GetDotProduct(const Vector2D &left, const Vector2D &right) {
