@@ -42,3 +42,9 @@ struct Vector2D{
     static Vector2D XVector() { return {1, 0}; }
     static Vector2D YVector() { return {0, 1}; }
 };
+
+inline Vector2D operator*(const float Value, const Vector2D &other)
+{
+    return other.operator*(Value);
+}
+
