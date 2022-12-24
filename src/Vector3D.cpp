@@ -30,6 +30,10 @@ bool Vector3D::operator==(const Vector3D &right) const {
     return (X == right.X && Y == right.Y && Z == right.Z);
 }
 
+bool Vector3D::operator!=(const Vector3D &right) const {
+    return !(*this==right);
+}
+
 Vector3D Vector3D::operator*(const float Value) const {
     Vector3D temp(*this);
     temp *= Value;

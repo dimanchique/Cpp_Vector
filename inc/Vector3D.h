@@ -16,6 +16,7 @@ struct Vector3D{
     Vector3D &operator+=(const Vector3D &right);
     Vector3D &operator-=(const Vector3D &right);
     bool operator==(const Vector3D &right) const;
+    bool operator!=(const Vector3D &right) const;
     Vector3D operator*(float Value) const;
     Vector3D operator/(float Value) const;
     Vector3D &operator*=(float Value);
@@ -42,3 +43,8 @@ struct Vector3D{
     static Vector3D YVector() { return {0, 1, 0}; }
     static Vector3D ZVector() { return {0, 0, 1}; }
 };
+
+inline Vector3D operator*(const float Value, const Vector3D &other)
+{
+    return other*Value;
+}
