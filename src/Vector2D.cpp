@@ -29,7 +29,7 @@ bool Vector2D::operator==(const Vector2D &right) const{
 }
 
 bool Vector2D::operator!=(const Vector2D &right) const {
-    return !(this->operator==(right));
+    return !(*this==right);
 }
 
 Vector2D Vector2D::operator*(const float Value) const {

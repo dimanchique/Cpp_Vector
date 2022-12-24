@@ -45,6 +45,5 @@ struct Vector2D{
 
 inline Vector2D operator*(const float Value, const Vector2D &other)
 {
-    return other.operator*(Value);
+    return other*Value;
 }
-
