@@ -1,7 +1,6 @@
 #pragma once
-#include <experimental/random>
 
-#define epsilon 1e-6
+#define eps 1e-6
 #define RadToDeg(x) (x) * 57.295779513f;
 #define DegToRad(x) (x) * 0.01745329252f;
 
@@ -22,7 +21,7 @@ struct Vector2D{
     Vector2D &operator*=(float Value);
     Vector2D &operator/=(float Value);
 
-    [[nodiscard]] Vector2D GetNormalVector() const;
+    [[nodiscard]] Vector2D GetNormalVector() const {return {-Y, X};}
     void Rotate(float Degrees);
     [[nodiscard]] float GetRotation() const;
     void Normalize();
@@ -37,7 +36,6 @@ struct Vector2D{
     static float GetDotProduct(const Vector2D &left, const Vector2D &right);
     static float GetAngleBetweenVectors(const Vector2D &left, const Vector2D &right);
     static float GetDistanceBetweenVectors(const Vector2D &left, const Vector2D &right);
-    static Vector2D GetRandomRotatedVector();
 
     static Vector2D XVector() { return {1, 0}; }
     static Vector2D YVector() { return {0, 1}; }

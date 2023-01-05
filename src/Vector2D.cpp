@@ -1,4 +1,5 @@
 #include "Vector2D.h"
+#include <cmath>
 
 Vector2D Vector2D::operator+(const Vector2D &right) const {
     Vector2D temp(*this);
@@ -42,9 +43,6 @@ Vector2D Vector2D::operator/(float Value) const {
     Vector2D temp(*this);
     if (Value != .0f)
         temp /= Value;
-    else
-        printf("Attempt to divide vector (%.4f; %.4f) by zero", X, Y);
-
     return temp;
 }
 
@@ -58,10 +56,6 @@ Vector2D &Vector2D::operator/=(float Value) {
     X /= Value;
     Y /= Value;
     return *this;
-}
-
-Vector2D Vector2D::GetNormalVector() const {
-    return {-Y, X};
 }
 
 void Vector2D::Rotate(float Degrees) {
@@ -83,8 +77,6 @@ void Vector2D::Normalize() {
         X /= d;
         Y /= d;
     }
-    else
-        printf("Can't normalize zero vector");
 }
 
 Vector2D Vector2D::GetNormalized() const {
@@ -98,7 +90,7 @@ float Vector2D::GetMagnitude() const {
     float length = 1.0f;
     for (;;) {
         float nx = (length + quad / length) / 2;
-        if (std::abs (length - nx) < epsilon)
+        if (std::abs (length - nx) < eps)
             break;
         length = nx;
     }
@@ -106,7 +98,7 @@ float Vector2D::GetMagnitude() const {
 }
 
 bool Vector2D::IsUnitVector() const {
-    return std::abs(GetMagnitude() - 1.0f) < epsilon;
+    return std::abs(GetMagnitude() - 1.0f) < eps;
 }
 
 float Vector2D::GetDotProduct(const Vector2D &right) const {
@@ -136,9 +128,4 @@ float Vector2D::GetAngleBetweenVectors(const Vector2D &left, const Vector2D &rig
 
 float Vector2D::GetDistanceBetweenVectors(const Vector2D &left, const Vector2D &right) {
     return left.GetDistanceToVector(right);
-}
-
-Vector2D Vector2D::GetRandomRotatedVector() {
-    return Vector2D((float)std::experimental::randint(-100, 100)/100,
-                    (float)std::experimental::randint(-100, 100)/100).GetNormalized();
 }
